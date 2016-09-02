@@ -89,20 +89,22 @@ namespace Mini_project___hangman
         //display to the label above function
         private void displayCopy()
         {
-            lblword.Text += " ";
+            lblword.Text = "";
             
             for (int index = 0; index < copyCurrent.Length; index++)
             {
                 lblword.Text += copyCurrent.Substring(index,1);
                 lblword.Text += " ";
-                
+                //return lblword.Text(words[Math.Floor(Math.random() * words.Length)]);
+
+               
             }
         } 
 
         private void updateCopy(char guess)
         {
 
-        } 
+        }
         //all alphabet buttons are linked to this part.
         private void buttonA_Click(object sender, EventArgs e)
         {
@@ -114,35 +116,41 @@ namespace Mini_project___hangman
                 char[] temp = copyCurrent.ToCharArray();
                 char[] find = current.ToCharArray();
                 char guessChar = choice.Text.ElementAt(0);
-                for (int index = 0; index <find.Length; index++)
+
+                for (int index = 0; index < find.Length; index++)
                 {
-                    if (find [index] == guessChar)
+                    if (find[index] == guessChar)
                     {
                         temp[index] = guessChar;
                     }
                     copyCurrent = new string(temp);
-                    displayCopy();
-                }
-            }
 
+
+                    //change it up to find and display the found letter otherwise 
+
+                }
+                displayCopy();
+            }
 
             else
             {
                 wrongGuesses++;
             }
+        
 
             if (wrongGuesses <= 7)
             {
                 hangImage1.Image = hangImages[wrongGuesses];
             }
-            else 
+
+           else 
             {
                 labelResult.Text = "You Lost!";
             }
             if (copyCurrent.Equals(current))
             {
                 labelResult.Text = "Yay, you won!!!";
-            }
+            }  
 
             label3.Text = choice.Text;
         }
